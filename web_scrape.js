@@ -1,6 +1,6 @@
 var request = require("request");
 var cheerio = require("cheerio");
-var mongo = require('mongodb');
+var mongodb = require('mongodb');
 
 var url = "http://ca.openfoodfacts.org/";
 var completedPages = 0;
@@ -81,18 +81,16 @@ function getProductInfo(href) {
     
 }
 
+//Connect to db and insert all accumulated data
 function insertDB(insertData) {
-    var Server = mongo.Server;
-    var Db = mongo.Db;
-    var BSON = mongo.BSONPure;
+    var MongoClient = mongodb.MongoClient;
+    var url = 'mongodb://localhost:27017/barcode_scanner';
 
-    var server = new Server('localhost', 27017, {auto_reconnect: true});
-    db = new Db('barcode_sacanner', server);
-
-    db.open(function(err, client) {
+    MongoClient.connect(url, function(err, db) {
         if (!err) {
-            console.log("Connected to 'barcode_sacanner' database");
-            client.collection("products", function(err, collection) {
+            console.log("Connected correctly to server");
+            console.log("Current database", db.databaseName);
+            db.collection("products", function(err, collection) {
                 if (!err) {
                     console.log("We good");
                     collection.insert(insertData, function (err, result) {
@@ -105,6 +103,6 @@ function insertDB(insertData) {
                 }
             });
         }
-        //db.close();
+       //db.close();
     });
 }

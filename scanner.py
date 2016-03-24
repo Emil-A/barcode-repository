@@ -1,26 +1,24 @@
 import sys
 import urllib
-import sqlite3
+from pymongo import MongoClient
 
-conn = sqlite3.connect('barcodescanner.db')
-print "Opened database successfully";
+client = MongoClient('localhost', 27017)
+db = client.barcode_scanner
+
 '''
-cursor = conn.execute("SELECT * from products")
-for row in cursor:
-   print "barcode = ", row[0]
-   print "name = ", row[1]
-   print "brand = ", row[2]
-   print "quantity = ", row[3], "\n"
+for product in db.products.find():
+  print product
 '''
+
 
 amount = 1
 while 1:
     scanIn = sys.stdin.readline().rstrip()
     if not(scanIn is None):
-		conn.execute("INSERT INTO fridge (barcode, dateBought, amount) VALUES ("+scanIn+",date('now'),"+str(amount)+")");
-		conn.commit()
-		print scanIn
-		scanIn = None;
-		print "Inserted successfully";
+      query = db.products.find({"barcode": scanIn})
+      if(query.count() > 0):
+        insert = db.storage.insert_one(query)
+        print scanIn
+        scanIn = None;
+        print "Inserted successfully";
 
-conn.close()
