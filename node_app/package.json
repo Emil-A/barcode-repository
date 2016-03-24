@@ -1,0 +1,21 @@
+{
+  "name": "barcode-scanner",
+  "version": "0.0.1",
+  "main": "index.html",
+  "window": 
+  {
+  	"toolbar": false,
+  	"icon": "images/mysupericon.icns"
+  },
+
+  "maintaainers":
+  [
+  	{
+  		"name": "Emil",
+  		"email": "aite.emil@gmail.com",
+  		"web": "http://emil-a.github.io/"
+  	}
+  ],
+
+  "bugs": "https://github.com/Emil-A/barcode-repository/issues"
+}
