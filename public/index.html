@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+  <head>
+  	<!--CDN for boostrap-->
+	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+	<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    <title>Barcode Scanner App</title>
+    <script>
+		function strike(id) {
+			var item = document.getElementById(id);
+			item.style.setProperty("text-decoration", "line-through");
+		}
+    </script>
+  </head>
+  <body>
+  	<div class="container" ng-controller="AppCtrl">
+	    <h1>Barcode Scanner App!</h1>
+	    <input ng-model="test">
+	    {{test}}
+	    <div class="panel-heading">Grocery List</div>  
+		<ul class="list-group">
+			<li data-ng-repeat="food in grocerylist" class="list-group-item list-group-item-warning" id="item-1" onclick="strike(this.id);">{{food.name}}
+			<button class="btn btn-danger" ng-click="removeFood(food._id)">Remove</button></li>
+			<li><input class="form-control" ng-model="food.name"><button class="btn btn-success" ng-click="addFood()">Add Food</button></li>
+		</ul>
+
+		<div class="bs-example" data-example-id="panel-without-body-with-table"> 
+			<div class="panel panel-default">  
+				<div class="panel-heading">My Storage</div>  
+				<table class="table"><thead><tr><th>Product</th><th>Brand</th><th>Quantity</th><th>Image</th></tr></thead> 
+					<tbody>
+						<tr ng-repeat="item in storage">
+							<td>{{item.product.name}}</td>
+							<td>{{item.product.brand}}</td>
+							<td>1</td>
+							<td><img ng-src="{{item.product.img_url}}" class="img-thumbnail" alt="{{item.product.name}}" width="50"></td>
+						</tr> 
+					</tbody> 
+				</table> 
+			</div> 
+		</div>	
+	</div>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.3/angular.min.js"></script>
+	<script src="controllers/controller.js"></script>
+  </body>
+</html>

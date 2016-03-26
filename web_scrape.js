@@ -51,27 +51,33 @@ function getProductInfo(href) {
         if(name.length == 3) {
             var product =  name[0];
             var brand = name[1];
-            var quantity = name[2];
+            var quantity = name[2].trim();
+        }else if (name.length == 2) {
+            var product =  name[0];
+            var brand = undefined;
+            var quantity = name[1].trim();
         }else {
             var product =  name[0];
             var brand = undefined;
-            var quantity = name[1];
+            var quantity = undefined;
         }
 
-        var barcode = $('span[itemprop="gtin13"]').text();
+        //Strip first 0 for UPC
+        var barcode = $('span[itemprop="gtin13"]').text().substring(1);
         var img_url = $('#og_image').attr('src');
         
         //console.log(product + ", " + brand + ", " + quantity + ", " + barcode + ", " + img_url);
 
         if(barcode && product) {
-            newProducts.push({barcode: barcode, name: product, brand: brand, quantity: quantity, img_url: img_url});
+            newProducts.push({_id: barcode, name: product, brand: brand, quantity: quantity, img_url: img_url});
         }
 
         completedProds++;
         console.log("Fetching product info: " + completedProds + ", " + href);
         if (completedProds == 540) {
             console.log("Insert!");
-            insertDB(newProducts);            
+            insertDB(newProducts);  
+            completedProds = 541;          
         }
 
       } else {
@@ -90,6 +96,7 @@ function insertDB(insertData) {
         if (!err) {
             console.log("Connected correctly to server");
             console.log("Current database", db.databaseName);
+            db.createCollection("products");
             db.collection("products", function(err, collection) {
                 if (!err) {
                     console.log("We good");

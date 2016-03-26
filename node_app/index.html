@@ -2,33 +2,21 @@
 <html>
   <head>
     <title>Barcode Scanner App</title>
-
-	<!-- Latest compiled and minified CSS -->
+	<!--CDN for boostrap-->
 	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-	<!-- jQuery library -->
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
-	<!-- Latest compiled JavaScript -->
 	<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-
     <script>
-		var file = "BarcodeScanner.db";
-		//var sqlite3 = require("sqlite3").verbose();
+    	var mongodb = require('mongodb');
+		var MongoClient = mongodb.MongoClient;
+		var url = 'mongodb://localhost:27017/barcode_scanner';
 
-		/*var db = new sqlite3.Database(file);
+		MongoClient.connect(url, function(err, db) {
+			if (!err) {
+				alert("Current database", db.databaseName);
+			}
+		}
 
-		//DB stuff
-		var sqlite3 = require("sqlite3").verbose();
-		var db = new sqlite3.Database(file);
-
-		var products = "";
-
-		db.serialize(function() {
-			db.each("SELECT * FROM products", function(err, row) {
-				products += "New product " + row.barcode + " " + row.name + "\n";
-				alert(products);
-			});
-		});
-		db.close();*/
 		function strike(id) {
 			var item = document.getElementById(id);
 			item.style.setProperty("text-decoration", "line-through");
