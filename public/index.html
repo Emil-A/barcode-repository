@@ -16,14 +16,26 @@
   <body>
   	<div class="container" ng-controller="AppCtrl">
 	    <h1>Barcode Scanner App!</h1>
-	    <input ng-model="test">
-	    {{test}}
-	    <div class="panel-heading">Grocery List</div>  
-		<ul class="list-group">
-			<li data-ng-repeat="food in grocerylist" class="list-group-item list-group-item-warning" id="item-1" onclick="strike(this.id);">{{food.name}}
-			<button class="btn btn-danger" ng-click="removeFood(food._id)">Remove</button></li>
-			<li><input class="form-control" ng-model="food.name"><button class="btn btn-success" ng-click="addFood()">Add Food</button></li>
-		</ul>
+	    <input ng-model="test">{{test}}
+
+	    <div class="row">
+		    <div class="col-md-4">
+		    	<div class="panel panel-default"> 
+				    <div class="panel-heading">Grocery List</div>  
+					<ul class="list-group">
+						<li data-ng-repeat="food in grocerylist" class="list-group-item list-group-item-warning clearfix" id="item-1" onclick="strike(this.id);">{{food.name}}<button class="btn btn-danger pull-right" ng-click="removeFood(food._id)">Remove</button></li>
+						<li class="list-group-item">
+						<div class="input-group">
+						<input class="form-control" ng-model="food.name" placeholder="ex: Milk">
+						<span class="input-group-btn">
+							<button class="btn btn-success" ng-click="addFood()">Add Food</button>
+						</span>
+						</div>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
 
 		<div class="bs-example" data-example-id="panel-without-body-with-table"> 
 			<div class="panel panel-default">  
