@@ -16,7 +16,6 @@
   <body>
   	<div class="container" ng-controller="AppCtrl">
 	    <h1>Barcode Scanner App!</h1>
-	    <input ng-model="test">{{test}}
 	    <div class="row">
 	    	<div class="col-md-6">
 				<div class="bs-example" data-example-id="panel-without-body-with-table"> 
@@ -25,10 +24,10 @@
 						<table class="table"><thead><tr><th>Product</th><th>Brand</th><th>Quantity</th><th>Image</th></tr></thead> 
 							<tbody>
 								<tr ng-repeat="item in storage">
-									<td>{{item.product.name}}</td>
-									<td>{{item.product.brand}}</td>
-									<td>{{item.quantity}}</td>
-									<td><img ng-src="{{item.product.img_url}}" class="img-thumbnail" alt="{{item.product.name}}" width="50"></td>
+									<td>{{item._id.name}}</td>
+									<td>{{item._id.brand}}</td>
+									<td>{{item.amount}}</td>
+									<td><img ng-src="{{item._id.img_url}}" class="img-thumbnail" alt="{{item._id.name}}" width="50"></td>
 								</tr> 
 							</tbody> 
 						</table> 

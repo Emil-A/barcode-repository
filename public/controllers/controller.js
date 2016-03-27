@@ -2,14 +2,14 @@ var myApp = angular.module('myApp', []);
 myApp.controller('AppCtrl', ['$scope', '$http', function($scope, $http) {
     console.log("Hello World from controller");
 
-    var refresh = function() {
+    var refreshGroc = function() {
 	    $http.get('/grocerylist').success(function(response) {
 	    	console.log("Got grocerylist stuff :)");
 	    	$scope.grocerylist = response;
 	    	$scope.food = "";
 	    });
 	};
-	refresh();
+	refreshGroc();
 
     $http.get('/storage').success(function(response) {
     	console.log("Got storage stuff :)");
@@ -20,14 +20,14 @@ myApp.controller('AppCtrl', ['$scope', '$http', function($scope, $http) {
     	console.log($scope.food);
     	$http.post('/grocerylist', $scope.food).success(function(response) {
     		console.log(response);
-    		refresh();
+    		refreshGroc();
     	});
     };
 
     $scope.removeFood = function(id) {
     	console.log(id);
     	$http.delete('/grocerylist/' + id).success(function(response) {
-    		refresh();
+    		refreshGroc();
     	});
     }
 }]);
