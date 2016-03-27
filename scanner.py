@@ -22,6 +22,7 @@ def addStorage():
         queryProd = db.products.find({"_id": scanIn})
         if(queryProd.count() > 0):
           #Product exsists
+          #Don't check if already in storage, tally up because of now time
           now = datetime.datetime.utcnow()
           db.storage.insert_one({"date": now, "product": queryProd[0]})
           print "Inserted successfully"
@@ -29,12 +30,11 @@ def addStorage():
           #Product not in db, need to add
           print "Let's add this to the products DB"
           newProd = createNewProd();
-          db.storage.insert_one({"_id": scanIn, "name": newProd.name, "brand": newProd.brand, "amount": newProd.amount, "img_url": newProd.image})
+          db.products.insert_one({"_id": scanIn, "name": newProd.name, "brand": newProd.brand, "quantity": newProd.amount, "img_url": newProd.image})
           queryProd = db.products.find({"_id": scanIn})
           now = datetime.datetime.utcnow()
           db.storage.insert_one({"date": now, "product": queryProd[0]})
           print "Inserted successfully"
-        print queryProd[0]
         scanIn = None
 
 def createNewProd():
@@ -44,6 +44,8 @@ def createNewProd():
   product.brand = raw_input("What's the brand? ")
   product.amount = raw_input("What's the amount (kg/ml)? ")
   product.image = raw_input("What's the image url? ")
+
+  return product
 
 #When a product is scanned out, remove it from the storage
 def removeStorage():
