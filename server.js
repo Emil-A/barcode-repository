@@ -7,19 +7,23 @@ var bodyParser = require('body-parser');
 app.use(express.static(__dirname + "/public"));
 app.use(bodyParser.json());
 
+app.get('/storage', function (req, res) {
+	console.log("Got yo storage request ;)");
+
+	//Aggregate to show count, rather than duplicates
+	db.storage.aggregate(
+		[
+			{$group: { _id: { barcode: '$product._id', name: "$product.name", brand: "$product.brand", img_url: "$product.img_url"}, amount: {$sum : 1}}}
+		]).toArray(function(err, docs) {
+			console.log(docs);
+			res.json(docs);
+		});
+});
+
 app.get('/grocerylist', function (req, res) {
 	console.log("Got yo grocery request ;)");
 
 	db.grocerylist.find(function (err, docs) {
-		console.log(docs);
-		res.json(docs);
-	});
-});
-
-app.get('/storage', function (req, res) {
-	console.log("Got yo storage requet ;)");
-
-	db.storage.find(function (err, docs) {
 		console.log(docs);
 		res.json(docs);
 	});
