@@ -17,6 +17,7 @@ myApp.controller('AppCtrl', ['$scope', '$http', function($scope, $http) {
     });
 
     $scope.addFood = function() {
+    	$scope.food.strike = false;
     	console.log($scope.food);
     	$http.post('/grocerylist', $scope.food).success(function(response) {
     		console.log(response);
@@ -27,6 +28,13 @@ myApp.controller('AppCtrl', ['$scope', '$http', function($scope, $http) {
     $scope.removeFood = function(id) {
     	console.log(id);
     	$http.delete('/grocerylist/' + id).success(function(response) {
+    		refreshGroc();
+    	});
+    }
+
+    $scope.strike = function(id, strike) {
+    	console.log(id);
+    	$http.put('/grocerylist/' + id, {'strike': strike}).success(function(response) {
     		refreshGroc();
     	});
     }

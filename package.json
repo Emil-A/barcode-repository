@@ -1,0 +1,28 @@
+{
+  "name": "barcode-scanner",
+  "version": "0.0.1",
+  "description": "barcode scanner",
+  "author": "Emil Aite",
+  "license": "ISC",
+  "dependencies": {
+    "cheerio": "0.20.0",
+    "express": "*",
+    "body-parser": "1.15.0",
+    "mongodb": "2.1.11",
+    "mongojs": "2.3.0",
+    "request": "2.69.0",
+  },
+  "scripts": {
+    "start": "node server.js"
+  },
+  "main": "server.js",
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Emil-A/barcode-repository.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Emil-A/barcode-repository/issues"
+  },
+  "homepage": "https://github.com/Emil-A/barcode-repository#readme"
+}

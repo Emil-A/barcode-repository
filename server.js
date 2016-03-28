@@ -44,5 +44,17 @@ app.delete('/grocerylist/:id', function (req, res) {
 	});
 });
 
+app.put('/grocerylist/:id', function (req, res) {
+	var id = req.params.id;
+	var strike = !req.body.strike;
+	console.log(id);
+	console.log(req.body);
+	db.grocerylist.findAndModify({query: {_id: mongojs.ObjectId(id)},
+		update: {$set: {strike: strike}},
+		new: true}, function (err, doc) {
+		res.json(doc);
+	});
+});
+
 app.listen(3000);
 console.log("Server running on port 3000");
