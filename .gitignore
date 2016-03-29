@@ -33,4 +33,4 @@ node_modules
 .node_repl_history
 
 # nwjs.app folder application/hidden folder path
-node_app/nwjs.app
+desktop_app/nwjs.app
