@@ -5,18 +5,22 @@
   "author": "Emil Aite",
   "license": "ISC",
   "dependencies": {
-    "cheerio": "0.20.0",
     "express": "*",
     "body-parser": "1.15.0",
     "mongodb": "2.1.11",
     "mongojs": "2.3.0",
-    "request": "2.69.0",
   },
   "scripts": {
     "start": "node server.js"
   },
   "main": "server.js",
-  "devDependencies": {},
+  "devDependencies": {
+    "chai": "3.5.0",
+    "cheerio": "0.20.0",
+    "karma": "0.13.22",
+    "mocha": "2.4.5",
+    "sinon": "1.17.3",
+    },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Emil-A/barcode-repository.git"

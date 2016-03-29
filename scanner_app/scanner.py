@@ -30,7 +30,10 @@ def addStorage():
           #Product not in db, need to add
           print "Let's add this to the products DB"
           newProd = createNewProd();
-          db.products.insert_one({"_id": scanIn, "name": newProd.name, "brand": newProd.brand, "quantity": newProd.amount, "img_url": newProd.image})
+          db.products.insert_one(
+            {
+            "_id": scanIn, "name": newProd.name, "brand": newProd.brand, "quantity": newProd.amount, "img_url": newProd.image
+            })
           queryProd = db.products.find({"_id": scanIn})
           now = datetime.datetime.utcnow()
           db.storage.insert_one({"date": now, "product": queryProd[0]})
@@ -51,4 +54,5 @@ def createNewProd():
 def removeStorage():
   print "Remove!"
 
-addStorage()
+if __name__ == "__addStorage()__":
+  addStorage()

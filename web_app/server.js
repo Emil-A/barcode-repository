@@ -49,6 +49,7 @@ app.put('/grocerylist/:id', function (req, res) {
 	var strike = !req.body.strike;
 	console.log(id);
 	console.log(req.body);
+	//Update grocerylist item to be opposite strikethrough
 	db.grocerylist.findAndModify({query: {_id: mongojs.ObjectId(id)},
 		update: {$set: {strike: strike}},
 		new: true}, function (err, doc) {
