@@ -57,7 +57,7 @@ def main():
   while 1:
     scanIn = sys.stdin.readline().rstrip()
     if not(scanIn is None):
-      if addStorage(scanIn):
+      if add_storage(scanIn):
         print "Inserted successfully"
       scanIn = None
 
