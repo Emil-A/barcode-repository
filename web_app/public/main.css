@@ -1,0 +1,14 @@
+.affix{
+    right-padding: 20px !important;
+}
+
+.alert .btn-group {
+    display:inline;
+}
+
+.alert div .btn-group {
+    display:inline;
+}
+.alert p .btn {
+    display:inline;
+}
