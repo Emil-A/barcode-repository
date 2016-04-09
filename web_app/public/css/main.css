@@ -94,3 +94,7 @@ body{
     width: 300px;
     //border-radius: 0;
 }
+
+.form-group .btn {
+    margin-left: 272px;
+}
